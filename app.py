@@ -10,7 +10,7 @@ class Product(Model):
     product_name = TextField(default="")
     product_quantity = IntegerField(default=0)
     product_price = IntegerField(default=0)
-    date_updated = DateTimeField(default=0)
+    date_updated = DateField(default=0)
 
     class Meta:
         database = db
@@ -92,7 +92,7 @@ def view_product():
 
 def backup_database():
     """Backup Database"""
-    with open('product_list_backup.csv','a') as csvfile:
+    with open('backup.csv','a') as csvfile:
         fieldnames = ['product_name','product_price','product_quantity','date_updated']
         product_writer = csv.DictWriter(csvfile,fieldnames = fieldnames)
         products = Product.select()
